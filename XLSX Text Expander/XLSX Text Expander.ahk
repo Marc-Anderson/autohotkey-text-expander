@@ -6,7 +6,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 SetTitleMatchMode, 2
 ; VERSION 100
 
-; This app works but is incomplete. still needs referential file location instead of typing it into the file. 
+; This text expander is a work in progress
 
 ; initialize the XL variable
 XL :=
