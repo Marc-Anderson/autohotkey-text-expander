@@ -4,7 +4,7 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 SetTitleMatchMode, 2
-; VERSION 100
+; VERSION 110
 
 ; This text expander is a work in progress
 
@@ -42,7 +42,7 @@ IfMsgBox, OK
     }
 
     ; Make Excel Visible
-    XL.Visible := 0
+    XL.Visible := 1
 
     ; select the sheet name containing the templates
     tgtSheet := XL.Worksheets("Templates")
@@ -72,10 +72,16 @@ IfMsgBox, OK
     }
     ; tell excel it's save so it wont harass you and close the document
     XL.Application.ActiveWorkbook.saved := true
+    wbCount := XL.Workbooks.Count    
     if(XL.Workbooks.Count = 1){
         XL.Quit
     } else {
-        XL.Application.ActiveWorkbook.Close
+        for WB in XL.Workbooks {
+            wbName := WB.Name
+            if(WB.Name = "hotstrings.xlsx"){
+                WB.Close
+            }
+        }
     }
 
     :*:<now::
