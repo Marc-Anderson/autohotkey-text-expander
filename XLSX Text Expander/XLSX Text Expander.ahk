@@ -4,20 +4,23 @@
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 SetTitleMatchMode, 2
-; VERSION 110
-
+; VERSION 112
 ; This text expander is a work in progress
+
+; name of file containing hotstrings
+hotstringFilename := "hotstrings.xlsx"
+; name of worksheet containing the hotstrings
+hotstringWorksheet := "Templates"
 
 ; initialize the XL variable
 XL :=
 
 ; fetch the correct file path
-tgtFilePath := A_ScriptDir "\hotstrings.xlsx"
+tgtFilePath := A_ScriptDir "\" hotstringFilename
 
-
-MsgBox, 1, AutoHotkey Text Expander, This text expander app allows you to automatically convert short phrases into long blocks of text.`n`nFor example, typing <now will automatically expand into the current date and time. All shortcuts used in this app are prefixed with the < symbol.`n`nNew shortcuts can be added in the hotstrings.xlsx file included with this app.
+MsgBox, 1, AutoHotkey Text Expander, This text expander allows you to automatically convert short phrases into long blocks of text. New shortcuts can be added in the included hotstrings.xlsx file.`n`nExample, typing <ate will expand into "AutoHotkey Text Expander"`n`nBuilt In Hotstring:`n<now = DateTime(MM/dd/yyyy hh:mm:ss)
 IfMsgBox, Cancel 
-    Return
+    ExitApp
 IfMsgBox, OK
     try {
         ; Check if excel is active
@@ -45,7 +48,10 @@ IfMsgBox, OK
     XL.Visible := 1
 
     ; select the sheet name containing the templates
-    tgtSheet := XL.Worksheets("Templates")
+    tgtSheet := XL.Worksheets(hotstringWorksheet)
+
+    ; activate the sheet with hotstrings
+    tgtSheet.Activate
 
     ; Sort the data by column C so it can loop over all of the hotstrings without empty cells
     tgtSheet.UsedRange.Offset(1).Sort(XL.Columns(3), 1)
@@ -66,7 +72,7 @@ IfMsgBox, OK
         HotStringExtended := StrReplace(StrReplace(StrReplace(HotStringExtended, "!","{!}"),"`r","{enter}"),A_Space A_Space,"{space 2}")
 
         ; assign both variables to a hotkey
-        hotstring(":*:" "<" HotStringShortCut, HotStringExtended)
+        hotstring(":*:" HotStringShortCut, HotStringExtended)
         ; MsgBox, 4, , %HotStringShortCut% - %HotStringExtended%`n`nContinue?
 
     }
@@ -78,7 +84,7 @@ IfMsgBox, OK
     } else {
         for WB in XL.Workbooks {
             wbName := WB.Name
-            if(WB.Name = "hotstrings.xlsx"){
+            if(WB.Name = hotstringFilename){
                 WB.Close
             }
         }
