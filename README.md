@@ -1,2 +1,2 @@
 # AutoHotkey-Text-Expander
-A lightweight text expander built in AutoHotkey.
+A lightweight spreadsheet(CSV,XLSX) based text expander built in AutoHotkey.
