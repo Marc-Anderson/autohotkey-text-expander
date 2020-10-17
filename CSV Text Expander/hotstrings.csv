@@ -1,4 +1,12 @@
 HotKey,Extended Text
-else,Please let me know if there is anything else I can do.
-sorry,I am sorry for the inconvenience.
-nobil,We do not include billing details with any of our shipments.
+<ate,AutoHotkey Text Expander
+<sorry,I am sorry for the inconvenience.
+<hi,Hello World
+<list,"This is the list of items I need from the store. 
+
+    * Apples
+    * Oranges
+    * Paper Towels
+
+That’s it, the end of the list."
+test,This is a hotstring without a prefix.
