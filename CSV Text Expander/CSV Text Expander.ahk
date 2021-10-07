@@ -11,8 +11,8 @@ MsgBox, 1, AutoHotkey Text Expander, This text expander allows you to automatica
 IfMsgBox, Cancel 
     ExitApp
 IfMsgBox, OK
-    ; loop through the csv file one line at a time
-    Loop, read, %A_ScriptDir%\hotstrings.csv
+    FileRead, CSV, %A_ScriptDir%\hotstrings.csv
+    Loop, Parse, CSV, `r, `n 
     {
         ; save the line number to a variable
         LineNumber := A_Index -1
@@ -20,35 +20,35 @@ IfMsgBox, OK
         ; skip the first row of content
         IfEqual, A_Index, 1, Continue
 
-        ; parse each cell into variables
-        Loop, parse, A_LoopReadLine, CSV
-            {
-                ; if the cell number is odd, assign the current cell to the HotStringShortCut variable
-                if ( Mod(A_Index, 2) != 0) {
-                    HotStringShortCut := A_LoopField ;else
-                    ; MsgBox, 4, , %LineNumber%-%A_Index% is:`n%A_LoopField%`n%HotStringShortCut%`nContinue?
+        Loop, Parse, A_LoopField, CSV
+        {
+        ; MsgBox, 4, , %A_Index% is:`n%A_LoopField%`nContinue?
+            ; if the cell number is odd, assign the current cell to the HotStringShortCut variable
+            if ( Mod(A_Index, 2) != 0) {
+                HotStringShortCut := A_LoopField ;else
+                ; MsgBox, 4, , %LineNumber%-%A_Index% is:`n%A_LoopField%`n%HotStringShortCut%`nContinue?
 
-                ; if the cell number is even, assign the current cell to the HotStringExtended variable
-                } else {
-                    HotStringExtended := A_LoopField
-                    ; MsgBox, 4, , %LineNumber%-%A_Index% is:`n%A_LoopField%`n%HotStringExtended%`nContinue?
-                }
-
-                ; if the cell number is even, assign both variables to a hotkey
-                if ( Mod(A_Index, 2) = 0) {
-                    ; MsgBox, 4, , %HotStringShortCut% - %HotStringExtended%`n`nContinue?
-                    HotStringExtended := StrReplace(StrReplace(StrReplace(HotStringExtended, "!","{!}"),"`r","{enter}"),A_Space A_Space,"{space 2}")
-                    hotstring(":*:" HotStringShortCut, HotStringExtended)
-                }
-
-                ; %LineNumber% is the current row
-                ; %A_Index% is the current column
-                ; %A_LoopField% is the current field
-                
-                ; MsgBox, 4, , Field %LineNumber%-%A_Index% is:`n%A_LoopField%`n`nContinue?
-                ; IfMsgBox, No
-                ;     return
+            ; if the cell number is even, assign the current cell to the HotStringExtended variable
+            } else {
+                HotStringExtended := A_LoopField
+                ; MsgBox, 4, , %LineNumber%-%A_Index% is:`n%A_LoopField%`n%HotStringExtended%`nContinue?
             }
+
+            ; if the cell number is even, assign both variables to a hotkey
+            if ( Mod(A_Index, 2) = 0) {
+                ; MsgBox, 4, , %HotStringShortCut% - %HotStringExtended%`n`nContinue?
+                HotStringExtended := StrReplace(StrReplace(StrReplace(HotStringExtended, "!","{!}"),"`r","{enter}"),A_Space A_Space,"{space 2}")
+                hotstring(":*:" HotStringShortCut, HotStringExtended)
+            }
+
+            ; %LineNumber% is the current row
+            ; %A_Index% is the current column
+            ; %A_LoopField% is the current field
+            
+            ; MsgBox, 4, , Field %LineNumber%-%A_Index% is:`n%A_LoopField%`n`nContinue?
+            ; IfMsgBox, No
+            ;     return
+        }
     }
 
     :*:<now::
