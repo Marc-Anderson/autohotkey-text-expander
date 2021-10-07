@@ -7,15 +7,12 @@ SetWorkingDir %A_ScriptDir%  			; Set starting directory to the directory with t
 SetTitleMatchMode,2				;Easily find window titles.
 
 
-; This app works but is incomplete. still needs filtering of special characters and referential file location instead of typing it into the file. 
-
-
 MsgBox, 1, AutoHotkey Text Expander, This text expander allows you to automatically convert short phrases into long blocks of text. New shortcuts can be added in the included hotstrings.csv file.`n`nExample, typing <ate will expand into "AutoHotkey Text Expander"`n`nBuilt In Hotstring:`n<now = DateTime(MM/dd/yyyy hh:mm:ss)
 IfMsgBox, Cancel 
     ExitApp
 IfMsgBox, OK
     ; loop through the csv file one line at a time
-    Loop, read, hotstrings.csv
+    Loop, read, %A_ScriptDir%\hotstrings.csv
     {
         ; save the line number to a variable
         LineNumber := A_Index -1
