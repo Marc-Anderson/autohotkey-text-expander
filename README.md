@@ -10,5 +10,6 @@ There is no installation process. Download the exe and hostrings.xlsx(or csv) an
 ## FAQ
 * There is nothing special about the hostrings file. Download the supplied one or make your own so long as the sheet, document names and columns are the same as the original.
 * If you already have ahk installed you can use the ahk file instead of the exe. 
-* I used the xlsx version every day for work.
-* I use the < at the beginning of all of my hotstrings but thats not necessary. You cant change the <now hotstring but any new ones you add can use any prefix or none at all. 
+* I use the xlsx version every day for work.
+* I use the < at the beginning of all of my hotstrings but thats not necessary. You cant change the <now hotstring but any new ones you add can use any prefix or none at all.
+* This is just a personal project because I wanted one and my boss would never pay for something like this but if you have suggestions I'd be open to adding/changing stuff. 
