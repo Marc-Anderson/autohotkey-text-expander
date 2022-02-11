@@ -31,21 +31,24 @@ IfMsgBox, OK
     }
     ; MsgBox, % IsObject(XL) ; Is excel an object?
     try {
+        ; Make Excel invisible
+        XL.Visible := 0
         ; Check if the workbook exists
         XL.Workbooks.Open(tgtFilePath)
     } catch {
+        ; Make Excel invisible
+        XL.Visible := 1
         ; Quit the application
-        if(XL.Workbooks.Count = 1){
-            XL.Quit
+        if(XL.Workbooks.Count = 0){
+            XL.Application.Quit()
+            XL := ""
         }
+
         ; Alert the user that the file was not found
         MsgBox, The necessary workbook was not found. Please create a hotstrings.xlsx file to continue.
         ExitApp
         Sleep, 2000
     }
-
-    ; Make Excel Visible
-    XL.Visible := 1
 
     ; select the sheet name containing the templates
     tgtSheet := XL.Worksheets(hotstringWorksheet)
@@ -77,18 +80,18 @@ IfMsgBox, OK
 
     }
     ; tell excel it's save so it wont harass you and close the document
-    XL.Application.ActiveWorkbook.saved := true
-    wbCount := XL.Workbooks.Count    
-    if(XL.Workbooks.Count = 1){
-        XL.Quit
-    } else {
-        for WB in XL.Workbooks {
-            wbName := WB.Name
-            if(WB.Name = hotstringFilename){
-                WB.Close
-            }
-        }
+    XL.Application.Workbooks(hotstringFilename).saved := true
+    XL.Application.Workbooks(hotstringFilename).Close
+
+    tgtSheet := ""
+    HotStringExtended := ""
+    HotStringShortCut := ""
+    XL := ""
+
+    if(XL.Workbooks.Count = 0){
+        XL.Application.Quit()
     }
+
 
     :*:<now::
         FormatTime, CurrentDateTime,, MM/dd/yyyy hh:mm:ss 
