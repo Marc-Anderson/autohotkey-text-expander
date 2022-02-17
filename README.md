@@ -13,3 +13,32 @@ There is no installation process. Download the exe and hotstrings.xlsx(or csv) a
 * I use the xlsx version every day for work.
 * I use the < at the beginning of all of my hotstrings but thats not necessary. You cant change the <now hotstring but any new ones you add can use any prefix or none at all.
 * This is just a personal project because I wanted one and my boss would never pay for something like this but if you have suggestions I'd be open to adding/changing stuff. 
+
+## Excel hotstring file format
+  
+Filename: hotstrings.xlsx  
+Sheetname: Templates  
+  
+### Table
+| ID | Name         | HotString | Extended Text                                                                                                                         |
+| -- | ------------ | --------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| 0  | My Name      | <ate      | AutoHotkey Text Expander                                                                                                              |
+| 1  | Greeting     |           | Hello World!                                                                                                                          |
+| 2  | Grocery Note | <list     | This is the list of items I need from the store.<br><br>    \* Apples<br>    \* Oranges<br>    \* Paper Towels<br><br>That’s it, the end of the list. |
+| 3  | Ramble       | <blah     | blah blah blah |
+  
+  
+   
+  
+## CSV hotstring file format
+  
+Filename: hotstrings.csv
+  
+### Table
+| HotString | Extended Text |
+| --------- | ------------- |
+| <ate      | AutoHotkey Text Expander |
+| <sorry    | I am sorry for the inconvenience. |
+| <hi       | Hello World |
+| <list     | This is the list of items I need from the store.<br><br> \* Apples<br> \* Oranges<br> \* Paper Towels<br><br> That’s it, the end of the list. |
+| test      | This is a hotstring without a prefix. |
