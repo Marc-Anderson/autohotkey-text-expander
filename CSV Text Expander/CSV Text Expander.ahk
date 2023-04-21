@@ -10,11 +10,6 @@ SetTitleMatchMode, 2
 hotstringFilename := "hotstrings.csv"
 hotstringFilepath := A_ScriptDir "\" hotstringFilename
 
-MsgBox, 1, AutoHotkey Text Expander, This text expander allows you to automatically convert short phrases into long blocks of text. New shortcuts can be added in the included %hotstringFilename% file.`n`nExample, typing <ate will expand into "AutoHotkey Text Expander"`n`nBuilt In Hotstring:`n<now = DateTime(MM/dd/yyyy hh:mm:ss)
-IfMsgBox, Cancel 
-    ExitApp
-    ; Sleep, 2000
-
 FileRead, CSV, %hotstringFilepath%
 Loop, Parse, CSV, `r, `n 
 {
@@ -53,6 +48,22 @@ Loop, Parse, CSV, `r, `n
         ; IfMsgBox, No
         ;     return
     }
+}
+
+; add info about the application to task bar
+AppInfoMenuVar := Func("AppInfoMenu")
+Menu, Tray, Add, App Info, % AppInfoMenuVar
+
+AppInfoMenu(){
+    global
+    Gui, ateInfo:New, +AlwaysOnTop
+    Gui, ateInfo:Font, s18, Verdana  
+    Gui, ateInfo:Add, Text,, AutoHotkey Text Expander
+    Gui, ateInfo:Font, s10, Verdana  
+    Gui, ateInfo:Add, Text, w500 h200, This text expander allows you to automatically convert short phrases into long blocks of text. New shortcuts can be added in the included %hotstringFilename% file.`n`nExample, typing <ate will expand into "AutoHotkey Text Expander"`n`nBuilt In Hotstring:`n<now = DateTime(MM/dd/yyyy hh:mm:ss)
+    Gui, ateInfo:Show,,AHK Text Expander Info
+    ; MsgBox, You selected "%A_ThisMenuItem%" in menu "%A_ThisMenu%".
+    return
 }
 
 ; built in hotstrings
