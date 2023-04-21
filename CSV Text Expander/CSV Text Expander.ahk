@@ -10,6 +10,15 @@ SetTitleMatchMode, 2
 hotstringFilename := "hotstrings.csv"
 hotstringFilepath := A_ScriptDir "\" hotstringFilename
 
+; show error if the hotstring file doesnt exist
+if !FileExist(hotstringFilepath) {
+    
+    ; Alert the user that the file was not found
+    MsgBox, The necessary hotstring file was not found. Please create a %hotstringFilename% file to continue.
+    ExitApp
+    Sleep, 2000
+}
+
 FileRead, CSV, %hotstringFilepath%
 Loop, Parse, CSV, `r, `n 
 {
