@@ -122,14 +122,19 @@ Menu, Tray, Add, App Info, % AppInfoMenuVar
 
 AppInfoMenu(){
     global
-    Gui, ateInfo:New, +AlwaysOnTop
-    Gui, ateInfo:Font, s18, Verdana  
-    Gui, ateInfo:Add, Text,, AutoHotkey Text Expander
-    Gui, ateInfo:Font, s10, Verdana  
-    Gui, ateInfo:Add, Text, w500 h200, This text expander allows you to automatically convert short phrases into long blocks of text. New shortcuts can be added in the included %hotstringFilename% file.`n`nExample, typing <ate will expand into "AutoHotkey Text Expander"`n`nBuilt In Hotstring:`n<now = DateTime(MM/dd/yyyy hh:mm:ss)`n`nIf you would like to keep track of how often your hotstrings are used, create a %hotstringCounterFilename% in the root folder where the application is stored and it will keep a running tally.
-    Gui, ateInfo:Show,,AHK Text Expander Info
+    Gui, AppInfo:New, +AlwaysOnTop
+    Gui, AppInfo:+LabelAppInfoGui_On
+    Gui, AppInfo:Font, s18, Verdana  
+    Gui, AppInfo:Add, Text,, AutoHotkey Text Expander
+    Gui, AppInfo:Font, s10, Verdana  
+    Gui, AppInfo:Add, Text, w500 h200, This text expander allows you to automatically convert short phrases into long blocks of text. New shortcuts can be added in the included %hotstringFilename% file.`n`nExample, typing <ate will expand into "AutoHotkey Text Expander"`n`nBuilt In Hotstring:`n<now = DateTime(MM/dd/yyyy hh:mm:ss)`n`nIf you would like to keep track of how often your hotstrings are used, create a %hotstringCounterFilename% in the root folder where the application is stored and it will keep a running tally.
+    Gui, AppInfo:Show,,AHK Text Expander Info
     ; MsgBox, You selected "%A_ThisMenuItem%" in menu "%A_ThisMenu%".
     return
+}
+
+AppInfoGui_OnClose(GuiHwnd){
+    Gui, %GuiHwnd%:Destroy
 }
 
 ; built in hotstrings
