@@ -17,6 +17,10 @@ hotstringWorksheetName := "Templates"
 hotstringCounterFilename := "hotstring-counter.txt"
 hotstringCounterFilepath := A_WorkingDir . "\" . hotstringCounterFilename
 
+; name and path of file for splash image
+splashImageFilename := "splashfile300x100.png"
+splashImageFilepath := A_ScriptDir "\" splashImageFilename
+
 ; initialize the XL variable
 XL :=
 
@@ -28,6 +32,20 @@ if !FileExist(hotstringFilepath) {
     ExitApp
     Sleep, 2000
 }
+
+; create splash image for 
+Gui, splash:New
+Gui, +hwnd_SplashWindowId
+Gui, splash:-Caption +alwaysontop
+Gui, splash:Font, s14, Verdana
+Gui, splash:Add, Text, x0 y50 w330 Center, AutoHotkey Text Expander
+Gui, splash:Font, s8, Verdana
+if FileExist(splashImageFilepath){
+    Gui, Add, Picture, x15 y15 w300 h100, %splashImageFilepath%
+}
+Gui, splash:Add, Text, x275 y115 Center, Loading...
+Gui, splash:Show, NoActivate w330 h130
+WinSet, Transparent, 150, ahk_id %_SplashWindowId%
 
 ; try to load the hotstring file
 try {
@@ -51,6 +69,9 @@ try {
         XL.Application.Quit()
         XL := ""
     }
+
+    ; remove the splash screen on error
+    Gui, %_SplashWindowId%:Destroy
 
     ; Alert the user that there was an error opening the hotstring file
     MsgBox, Either the necessary workbook was not found or there was another error opening the hotstring file. Please create a %hotstringFilename% file and check your excel installation to continue.
@@ -127,6 +148,9 @@ AppInfoMenu(){
     ; MsgBox, You selected "%A_ThisMenuItem%" in menu "%A_ThisMenu%".
     return
 }
+
+; remove the splash screen on error
+Gui, %_SplashWindowId%:Destroy
 
 AppInfoGui_OnClose(GuiHwnd){
     Gui, %GuiHwnd%:Destroy
