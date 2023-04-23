@@ -25,6 +25,9 @@ By adding a `splashfile300x100.png` image to the root folder, you can enable the
 3. The `splashfile300x100.png` image will be displayed as a splash screen while the script is loading hotstrings from the Excel file.
 4. Once the hotstrings are loaded, the splash screen will disappear, and the app will be ready for use.
 
+### Input Replacement Feature
+By adding `<<input>>` to the beginning of any extended text and `<<template>>` elsewhere in the extended text, the user will be prompted for input when the hotstring is executed. Upon pressing enter all instances of `<<template>>` will be replaced with the users input.
+
 ## FAQ
 * There is nothing special about the hotstrings file. Download the supplied one or make your own so long as the sheet, document names and columns are the same as the original.
 * If you already have ahk installed you can use the ahk file instead of the exe. 
