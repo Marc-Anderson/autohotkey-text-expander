@@ -38,13 +38,13 @@ Filename: hotstrings.xlsx
 Sheetname: Templates  
 
 ### Table
-| ID | Name         | HotString | Extended Text                                                                                                                         |
-| -- | ------------ | --------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| 0  | <ate         | AutoHotkey Text Expander |
-| 1  | <sorry       | I am sorry for the inconvenience. |
-| 2  | <hi          | Hello World |
-| 3  | <list        | This is the list of items I need from the store.<br><br> \* Apples<br> \* Oranges<br> \* Paper Towels<br><br> That’s it, the end of the list. |
-| 4  | test         | This is a hotstring without a prefix. |
+| ID | Name | HotString | Extended Text |
+| -- | ---- | --------- | ------------- |
+| 0 | Introduction | <ate | AutoHotkey Text Expander |
+| 1 | Apology | <sorry | I am sorry for the inconvenience. |
+| 2 | Greeting | <hi | Hello World |
+| 3 | Grocery Note | <list | This is the list of items I need from the store.<br><br>    \* Apples<br>    \* Oranges<br>    \* Paper Towels<br><br>That’s it, the end of the list. |
+| 4 | Test NoPrefix | test | This is a hotstring without a prefix. |
 
 ## CSV hotstring file format
 
@@ -53,8 +53,8 @@ Filename: hotstrings.csv
 ### Table
 | HotString | Extended Text |
 | --------- | ------------- |
-| <ate      | AutoHotkey Text Expander |
-| <sorry    | I am sorry for the inconvenience. |
-| <hi       | Hello World |
-| <list     | This is the list of items I need from the store.<br><br> \* Apples<br> \* Oranges<br> \* Paper Towels<br><br> That’s it, the end of the list. |
-| test      | This is a hotstring without a prefix. |
+| <ate | AutoHotkey Text Expander |
+| <sorry | I am sorry for the inconvenience. |
+| <hi | Hello World |
+| <list | This is the list of items I need from the store.<br><br>    \* Apples<br>    \* Oranges<br>    \* Paper Towels<br><br>That’s it, the end of the list. |
+| test | This is a hotstring without a prefix. |
