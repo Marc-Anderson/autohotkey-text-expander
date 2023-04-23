@@ -76,6 +76,16 @@ Loop, Parse, CSV, `r, `n
 
 executeHotstring(HotStringExtendedText,hotstringCounterObject){
 
+    ; check if extended text has <<input>> at the beginning, get input from user and replace all instances of <<template>>
+    global
+    if(SubStr(HotStringExtendedText, 1,9) == "<<input>>"){
+        Sleep, 50
+        createTextInputWindowAndWait()
+        ; InputBox, UserInputValue, Text Replacement,,,180, 100
+        HotStringExtendedText := StrReplace(HotStringExtendedText, "<<template>>", UserInputValue)
+        HotStringExtendedText := SubStr(HotStringExtendedText, 10)
+    }
+    
     ; send hotstring ExtendedText
 	sendinput % HotStringExtendedText
 
@@ -135,6 +145,23 @@ AppInfoMenu(){
 
 AppInfoGui_OnClose(GuiHwnd){
     Gui, %GuiHwnd%:Destroy
+}
+
+createTextInputWindowAndWait(){
+    global
+    Gui, New, +HwndinputWindowID +AlwaysOnTop -Caption, Input Text
+    Gui, Font, s14, Verdana
+    Gui, Add, Edit, vUserInputValue x12 y10 w326
+    Gui, Add, Button, Hidden default w0 h0, Submit
+    Gui, Show, w350 h50
+    WinWaitClose, Input Text
+    ; return inputWindowID
+    return
+}
+
+ButtonSubmit(){
+    Gui, Submit
+    Gui, Destroy
 }
 
 ; built in hotstrings

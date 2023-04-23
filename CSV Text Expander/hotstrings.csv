@@ -10,3 +10,4 @@ HotKey,Extended Text
 
 That’s it, the end of the list."
 test,This is a hotstring without a prefix.
+<input,<<input>>This message is for <<template>>. We are trying to reach <<template>> about their cars extended warranty.
