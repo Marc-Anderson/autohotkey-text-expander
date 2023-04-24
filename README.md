@@ -48,7 +48,7 @@ Sheetname: Templates
 | 2 | Greeting | <hi | Hello World |
 | 3 | Grocery Note | <list | This is the list of items I need from the store.<br><br>    \* Apples<br>    \* Oranges<br>    \* Paper Towels<br><br>That’s it, the end of the list. |
 | 4 | Test NoPrefix | test | This is a hotstring without a prefix. |
-| 5 | Template Replace Input | <input | <pre><<input>>This message is for <<template>>. We are trying to reach <<template>> about their cars extended warranty.</pre> |
+| 5 | Template Replace Input | <input | `<<input>>`This message is for `<<template>>`. We are trying to reach `<<template>>` about their cars extended warranty. |
 
 
 ## CSV hotstring file format
@@ -63,4 +63,4 @@ Filename: hotstrings.csv
 | <hi | Hello World |
 | <list | This is the list of items I need from the store.<br><br>    \* Apples<br>    \* Oranges<br>    \* Paper Towels<br><br>That’s it, the end of the list. |
 | test | This is a hotstring without a prefix. |
-| <input | <pre><<input>>This message is for <<template>>. We are trying to reach <<template>> about their cars extended warranty.</pre> |
+| <input | `<<input>>`This message is for `<<template>>`. We are trying to reach `<<template>>` about their cars extended warranty. |
