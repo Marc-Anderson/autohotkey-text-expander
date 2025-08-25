@@ -1,5 +1,7 @@
 # AutoHotkey-Text-Expander
-A lightweight spreadsheet(CSV,XLSX) based text expander built in AutoHotkey v1.x.
+A lightweight spreadsheet(CSV,XLSX) based text expander built in AutoHotkey
+
+- A huge thanks to [@kandeeswaran32](https://github.com/kandeeswaran32) for porting the script to AHK v2
 
 ## What it does
 This text expander allows you to automatically convert short phrases into long blocks of text. For example, typing <ate will expand into "AutoHotkey Text Expander" or typing <now will expand into the date and time formatted like this. MM/dd/yyyy hh:mm:ss. New shortcuts can be added in the hotstrings.xlsx(or csv) file.
@@ -31,7 +33,7 @@ By adding `<<input>>` to the beginning of any extended text and `<<template>>` e
 ## FAQ
 * There is nothing special about the hotstrings file. Download the supplied one or make your own so long as the sheet, document names and columns are the same as the original.
 * If you already have ahk installed you can use the ahk file instead of the exe. 
-* I use the xlsx version every day for work.
+* I mostly us macos but I use the xlsx version for work when im on windows.
 * I use the < at the beginning of all of my hotstrings but thats not necessary. You cant change the <now hotstring but any new ones you add can use any prefix or none at all.
 * This is just a personal project because I wanted one and my boss would never pay for something like this but if you have suggestions I'd be open to adding/changing stuff. 
 
